@@ -19,8 +19,7 @@
 //     ###                                /     ###/
 // Have fun. Don't forget to bookmark http://www.network-science.de/ascii/ :)
 //
-// The bar must be used when there's no other possible source of output
-// inside the for loop
+// Any other prints within the loop will break this.
 //
 // TODO: can use the destructor to also output time perf.
 #pragma once
@@ -57,7 +56,7 @@ public:
          */
         Iterator &operator++();
         /**
-         * @brief Responsible for terminating the loop. Take note that ill-defing the left and right
+         * @brief Responsible for terminating the loop. Take note that ill-defining the left and right
          * will lead to failure. It doesnt have much in the way of error checking.
          *
          * @param left the begin iterator (ideally)

@@ -1,11 +1,15 @@
 # Progress
 
 A neat (mostly) progress bar for c++.
+
 It's a single header file.
+
 (There's also a CMakeLists.txt if you want it.)
 
 Note that I'm not an expert C++ guy. I just wanted some progress printing, and wanted
-something similar to tqdm in python. There's not much in the way of actual pretty printing,
+something similar to tqdm in python.
+
+There's not much in the way of actual pretty printing,
 but with C++ 20 and init statements, at least the code can be very clean.
 
 Contributions welcome :)
@@ -31,8 +35,8 @@ int main() {
 result
 
 ```plain
-  such wow [###################] 100 / 100  31%
-  much amaze [######              ] 31 / 100  31%
+  such wow [###################] 100 / 100  100%
+  much amaze [######              ] 301 / 1000  31%
 ```
 
 You can check `examples/example.cpp` for more usage. There's some documentation too. But it shouldn't be that hard to figure out how to use this. Maybe I'll add more/do it properly later or something.
