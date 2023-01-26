@@ -12,17 +12,38 @@ something similar to tqdm in python.
 There's not much in the way of actual pretty printing,
 but with C++ 20 and init statements, at least the code can be very clean.
 
-Contributions welcome :)
+Feel free to suggest changes.
 
 ## Usage
 
+The idea is that you can pretty easily replace any code like this:
+
 ```cpp
-// assuming you linked against the `progress` target in CMake
+for (int i = 0; i < limit; i++) {
+    // whatever you do with i here
+}
+```
+
+with:
+
+```cpp
+#include "progress/progress.h"
+for (progress::Progress bar(limit); int i : bar) {
+    // still do the same thing with i here
+}
+```
+
+and you get on your console
+
+```plain
+  progress [##############     ] 123 / limit  69%
+```
+
+```cpp
 #include "progress/progress.h"
 
 int main() {
     for (progress::Progress bar(100); int counter : bar.name("such wow")) {
-        // do something with the counter which goes from 0 to 99 like a normal for loop
         // but dont print anything else though (maybe std::err might work...)
     }
     for (progress::Progress bar(1000); int counter : bar.name("much amaze")) {
