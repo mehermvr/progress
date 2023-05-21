@@ -217,7 +217,7 @@ inline Progress::Progress(int total, int ticks, std::ostream &ostream)
 
 inline void Progress::push() {
     m_counter += m_update;
-    int current_tick = std::floor(m_counter * static_cast<double>(m_ticks) / m_total);
+    int current_tick = static_cast<int>(std::floor(m_counter * static_cast<double>(m_ticks) / m_total));
     if (current_tick < m_next_tick) {
         return;
     }
@@ -230,8 +230,8 @@ inline void Progress::push() {
     if (m_show_bar) {
         m_output << m_style[0];
         std::string donebar(m_bar_length, m_style[2]);
-        donebar.replace(0, std::floor(current_tick * static_cast<double>(m_bar_length) / m_ticks),
-                        std::floor(current_tick * static_cast<double>(m_bar_length) / m_ticks),
+        donebar.replace(0, static_cast<size_t>(std::floor(current_tick * static_cast<double>(m_bar_length) / m_ticks)),
+                        static_cast<size_t>(std::floor(current_tick * static_cast<double>(m_bar_length) / m_ticks)),
                         m_style[1]);
         m_output << donebar;
         m_output << m_style[3];
@@ -287,5 +287,5 @@ inline bool operator!=(const Progress::Iterator &left, const Progress::Iterator 
         return left.m_progress.finished();
     }
     throw std::runtime_error("you're on your own");
-};
+}
 }  // namespace progress
