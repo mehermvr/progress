@@ -27,7 +27,7 @@ for (int i = 0; i < limit; i++) {
 with:
 
 ```cpp
-#include "progress/progress.h"
+#include "progress.h"
 for (progress::Progress bar(limit); int i : bar) {
     // still do the same thing with i here
 }
@@ -40,7 +40,7 @@ and you get on your console
 ```
 
 ```cpp
-#include "progress/progress.h"
+#include "progress.h"
 
 int main() {
     for (progress::Progress bar(100); int counter : bar.name("such wow")) {

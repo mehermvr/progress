@@ -4,7 +4,7 @@
 #include <iostream>
 #include <thread>
 
-#include "progress/progress.hpp"
+#include "progress.hpp"
 
 int main() {
     for (progress::Progress bar(1000); int cycle : bar.name("such wow")) {

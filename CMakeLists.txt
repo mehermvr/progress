@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_library(${PROJECT_NAME} INTERFACE)
 target_include_directories(${PROJECT_NAME}
     INTERFACE
-        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/progress
 )
 
 add_executable(example ${PROJECT_SOURCE_DIR}/example/example.cpp)
