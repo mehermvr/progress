@@ -19,7 +19,8 @@
 //     ###                                /     ###/
 // Have fun. Don't forget to bookmark http://www.network-science.de/ascii/ :)
 //
-// Any other prints within the loop will break this.
+// The bar must be used when there's no other possible source of output
+// inside the for loop
 //
 // TODO: can use the destructor to also output time perf.
 #pragma once
@@ -58,7 +59,7 @@ public:
          */
         Iterator &operator++();
         /**
-         * @brief Responsible for terminating the loop. Take note that ill-defining the left and right
+         * @brief Responsible for terminating the loop. Take note that ill-defing the left and right
          * will lead to failure. It doesnt have much in the way of error checking.
          *
          * @param left the begin iterator (ideally)
@@ -217,7 +218,6 @@ private:
 
     std::ostream &m_output{std::cout};
     std::chrono::time_point<std::chrono::high_resolution_clock> m_start;
-
 };
 
 inline Progress::Progress(int32_t total, std::ostream &ostream)
@@ -231,8 +231,8 @@ inline Progress::Progress(int32_t total, int32_t ticks, std::ostream &ostream)
 
 inline void Progress::push() {
     m_counter += m_update;
-    int current_tick = static_cast<int>(std::floor(static_cast<long double>(m_counter * m_ticks) /
-                                  static_cast<long double>(m_total)));
+    int current_tick = std::floor(static_cast<long double>(m_counter * m_ticks) /
+                                  static_cast<long double>(m_total));
     if (current_tick < m_next_tick) {
         return;
     }
@@ -246,8 +246,9 @@ inline void Progress::push() {
     if (m_show_bar) {
         m_output << m_style[0];
         std::string donebar(m_bar_length, m_style[2]);
-        donebar.replace(0, static_cast<size_t>(std::floor(current_tick * static_cast<long double>(m_bar_length) / m_ticks)),
-                        static_cast<size_t>(std::floor(current_tick * static_cast<long double>(m_bar_length) / m_ticks)),
+        donebar.replace(0,
+                        std::floor(current_tick * static_cast<long double>(m_bar_length) / m_ticks),
+                        std::floor(current_tick * static_cast<long double>(m_bar_length) / m_ticks),
                         m_style[1]);
         m_output << donebar;
         m_output << m_style[3];
